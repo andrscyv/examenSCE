@@ -11,6 +11,10 @@ import java.rmi.registry.Registry;
 import miservicioweb.Exception_Exception;
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
+import java.util.logging.FileHandler;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.util.logging.SimpleFormatter;
 public class Client 
 {
     //private Client() {}
@@ -29,6 +33,11 @@ public class Client
        int b = 0;
        int min = -46339;
        int max = 46339;
+       Logger log = Logger.getLogger("example.hello.client");
+       FileHandler fileTxt;
+       SimpleFormatter formatterTxt;
+       String fecha = java.time.LocalDate.now().toString();
+       
        
        n = (args.length < 2) ? 20 : Long.parseLong(args[1]);
        
@@ -37,6 +46,15 @@ public class Client
              Registry registry = LocateRegistry.getRegistry(host);
              IServDisparo servDisparo = (IServDisparo) registry.lookup("ServidorDeDisparo");
              lngQuienSoy = servDisparo.quienSoy();
+             
+             //CONFIGURACION DE LOGGER
+             fileTxt = new FileHandler("Log_"+fecha+"_"+lngQuienSoy+".txt");
+             log.setLevel(Level.INFO);
+             formatterTxt = new SimpleFormatter();
+             fileTxt.setFormatter(formatterTxt);
+             log.addHandler(fileTxt);
+             //logger
+             
              lngCuantosMilisFaltan = servDisparo.deltaTEnMilis();
              System.out.println("Cliente " + lngQuienSoy + " faltan " + lngCuantosMilisFaltan  + " milisegundos");
              sumDeltaT  = 0;
@@ -66,6 +84,7 @@ public class Client
             catch(Exception e){
                 System.out.println(e);
                 suma = -1;
+                log.log(Level.SEVERE, "LOGGER : Error de multiplicacion overflow");
             }
             
                t1 = System.currentTimeMillis();

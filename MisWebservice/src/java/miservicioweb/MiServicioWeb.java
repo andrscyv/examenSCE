@@ -5,6 +5,8 @@
  */
 package miservicioweb;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.jws.WebService;
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
@@ -67,7 +69,9 @@ public class MiServicioWeb {
         res = Math.multiplyExact(a,b);
         }
         catch(Exception e){
+        Logger.getLogger(Logger.GLOBAL_LOGGER_NAME).log(Level.SEVERE, "Overflow de multiplicacion");
         throw new Exception("Excepcion de la multiplicacion: OVERFLOW");
+        
         }
         
         return res;
