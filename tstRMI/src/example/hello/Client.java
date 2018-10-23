@@ -33,7 +33,7 @@ public class Client
        int b = 0;
        int min = -46339;
        int max = 46339;
-       Logger log = Logger.getLogger("example.hello.client");
+       
        FileHandler fileTxt;
        SimpleFormatter formatterTxt;
        String fecha = java.time.LocalDate.now().toString();
@@ -46,7 +46,7 @@ public class Client
              Registry registry = LocateRegistry.getRegistry(host);
              IServDisparo servDisparo = (IServDisparo) registry.lookup("ServidorDeDisparo");
              lngQuienSoy = servDisparo.quienSoy();
-             
+             Logger log = Logger.getLogger("example.hello.client."+lngQuienSoy);
              //CONFIGURACION DE LOGGER
              fileTxt = new FileHandler("Log_"+fecha+"_"+lngQuienSoy+".txt");
              log.setLevel(Level.INFO);
@@ -84,7 +84,7 @@ public class Client
             catch(Exception e){
                 System.out.println(e);
                 suma = -1;
-                log.log(Level.SEVERE, "LOGGER : Error de multiplicacion overflow");
+                log.log(Level.SEVERE, "LOGGER Error de multiplicacion overflow en clte num:"+lngQuienSoy);
             }
             
                t1 = System.currentTimeMillis();

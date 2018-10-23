@@ -1,0 +1,4 @@
+oct 23, 2018 3:42:57 PM example.hello.Client main
+GRAVE: LOGGER Error de multiplicacion overflow en clte num:1
+oct 23, 2018 3:43:10 PM example.hello.Client main
+GRAVE: LOGGER Error de multiplicacion overflow en clte num:1
