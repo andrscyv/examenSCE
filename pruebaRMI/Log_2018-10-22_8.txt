@@ -1,0 +1,6 @@
+oct 22, 2018 10:16:21 PM example.hello.Client main
+GRAVE: LOGGER : Error de multiplicacion overflow
+oct 22, 2018 10:16:23 PM example.hello.Client main
+GRAVE: LOGGER : Error de multiplicacion overflow
+oct 22, 2018 10:16:24 PM example.hello.Client main
+GRAVE: LOGGER : Error de multiplicacion overflow
